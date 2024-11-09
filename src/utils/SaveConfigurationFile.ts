@@ -19,12 +19,13 @@ export function saveConfigurationFile({
     const fileDataAsObject = {
         ':api_key': key,
         ':password': password,
-        ':theme_id': themeId,
+        ':theme_id': themeId ? Number(themeId) : undefined,
         ':preview_url': previewUrl,
         ':debug': debug,
     };
 
     const configFileData = yaml.stringify(fileDataAsObject);
+    console.log('YAML Data:', configFileData);
 
     return fsp
         .writeFile('config.yml', configFileData)
