@@ -25,7 +25,6 @@ export function saveConfigurationFile({
     };
 
     const configFileData = yaml.stringify(fileDataAsObject);
-    console.log('YAML Data:', configFileData);
 
     return fsp
         .writeFile('config.yml', configFileData)
