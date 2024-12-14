@@ -70,14 +70,18 @@ export default function configure() {
                 debug: answers.debug,
             });
 
-            const loader = ora('Setting up CLI...').start();
+            const loader = ora({
+                text: 'Setting up CLI...',
+                stream: process.stdout,
+            }).start();
 
             tray.configure()
                 .then((success) => {
                     loader.succeed(success);
                 })
                 .catch((error) => {
-                    loader.fail(error.toString());
+                    loader.stop();
+                    console.error(error.toString());
                 });
         });
 }
